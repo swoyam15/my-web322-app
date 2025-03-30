@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Historic Sites</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" type="image/webp" href="/imgs/ca-40x30.webp">
+</head>
+
+<body>
+    <%- include('partials/navbar', {page: '/home'}) %>
+    
+    <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6"
+            style="background-image: url(https://imgs.search.brave.com/q22t3IqRqGyNuS3Xpt4r50_qY-WWfaDCm4WV5oQABMk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9scC1j/bXMtcHJvZHVjdGlv/bi5pbWdpeC5uZXQv/MjAyMS0wNy9HZXR0/eVJGXzQ2MjU3NjY0/NS5qcGc_Zml0PWNy/b3AmYXI9MToxJnc9/MTIwMCZhdXRvPWZv/cm1hdCZxPTc1);">
+            <div class="hero-overlay bg-opacity-60"></div>
+            <div class="hero-content text-neutral-content text-center">
+                <div class="max-w-md">
+                    <h1 class="mb-5 text-5xl font-bold">National Historic Sites of CANADA</h1>
+                    <p class="py-6">
+                        Browse National Historic Sites located across ten provinces and three territories of Canada!
+                    </p>
+                    <a href="/sites" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
+                <div class="card bg-base-100 shadow-xl">
+                    <figure>
+                        <img class="w-full"
+                            src="https://talentmontreal.com/getmedia/31e8aed0-570e-498f-9946-fb6b442a0ad0/quartier_westmount_ete.jpg" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Westmount District</h2>
+    
+                        <p>The historic district of Westmount which epitomizes the architectural styles and trends in
+                            landscape architecture of 1890 to 1930; reflects the efforts of local citizens who, from the
+                            early 20th century onwards, sought to protect the diversity and historic integrity of the
+                            district's built environment</p>
+                        <p><b>Date: </b>1874 (city incorporated) </p>
+                        <p><b>Location": </b>Westmount, QC</p>
+    
+                        <div class="card-actions justify-end">
+                            <a href="/sites/QC008" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <div>
+    
+                <div class="card bg-base-100 shadow-xl">
+                    <figure>
+                        <img class="w-full"
+                            src="https://cdn.britannica.com/24/187524-138-D89D3F4C/history-Parliament-Buildings-Ottawa-Canada-Ontario.jpg?w=800&h=450&c=crop" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Public Grounds of the Parliament Buildings</h2>
+    
+                        <p>The focal point for national celebrations in Ottawa; the grounds were originally designed by
+                            Calvert Vaux, and since supplemented by 18 monuments and memorials</p>
+                        <p><b>Date: </b>1875 (initial completion) </p>
+                        <p><b>Location": </b>Ottawa, ON</p>
+    
+                        <div class="card-actions justify-end">
+                            <a href="/sites/ON016" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <div>
+    
+                <div class="card bg-base-100 shadow-xl">
+                    <figure>
+                        <img class="w-full"
+                            src="https://natalietheexplorer.home.blog/wp-content/uploads/2022/04/pressbuilding_9670.jpg?w=640" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Gouinlock Buildings / Early Exhibition Buildings</h2>
+    
+                        <p>Five buildings (the Fire Hall/Police Station, Government Building, Horticulture Building, Music
+                            Building and Press Building) on the grounds of the Canadian National Exhibition; the largest and
+                            finest group of early 20th century exhibition buildings in Canada</p>
+                        <p><b>Date: </b>1912 (completed) </p>
+                        <p><b>Location": </b>Toronto, ON</p>
+    
+                        <div class="card-actions justify-end">
+                            <a href="/sites/ON025" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

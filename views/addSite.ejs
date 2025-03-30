@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Add Project</title>
+  </head>
+  <body>
+    <%- include('partials/navbar', {page: '/addSite'}) %>
+    <div class="container mx-auto">
+      <div class="hero bg-base-200 rounded-lg py-10 mt-10">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Add Site</h1>
+            <p class="py-6">
+              Use the below form to add a new Site to the collection
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto">
+      <form action="/addSite" method="post">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-0"
+        >
+        <div class="mb-6">
+            <label for="siteId" class="block font-bold my-2">SiteId</label>
+            <input
+              type="text"
+              id="siteId"
+              name="siteId"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="site" class="block font-bold my-2">Site</label>
+            <input
+              type="text"
+              id="site"
+              name="site"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="feature_img_url" class="block font-bold my-2">Feature Image (URL)</label>
+            <input
+              type="url"
+              id="feature_img_url"
+              name="feature_img_url"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="date" class="block font-bold my-2">Date</label>
+            <input
+              type="number"
+              id="date"
+              name="date"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div><div class="mb-6">
+            <label for="dateType" class="block font-bold my-2">Date Type</label>
+            <input
+              type="text"
+              id="dateType"
+              name="dateType"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div><div class="mb-6">
+            <label for="designated" class="block font-bold my-2">Designated</label>
+            <input
+              type="number"
+              id="designated"
+              name="designated"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div><div class="mb-6">
+            <label for="location" class="block font-bold my-2">Location</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              required=""
+              class="w-full input-bordered input-primary bg-base-200 rounded-md px-3 py-2"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="provinceOrTerritoryCode" class="block font-bold my-2">provinceOrTerritoryCode</label>
+            <select
+              id="provinceOrTerritoryCode"
+              name="provinceOrTerritoryCode"
+              required=""
+              class="w-full rounded-md px-3 py-2"
+            >
+                <% provincesAndTerritories.forEach(provinceOrTerritory=>{ %>
+                <option value="<%= provinceOrTerritory.code %>">
+                <%= provinceOrTerritory.name %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label for="description" class="block font-bold my-2">Description</label
+            >
+            <textarea
+              id="description"
+              name="description"
+              class="w-full rounded-md input-bordered input-primary bg-base-200 px-3 py-2 h-40"
+            ></textarea>
+          </div>
+
+          <div class="mb-6">
+            <label for="latitude" class="block font-bold my-2">Latitude</label>
+            <input
+              id="latitude"
+              name="latitude"
+              type="number" step="0.00000001"
+              required=""
+              class="w-full rounded-md input-bordered input-primary bg-base-200 px-3 py-2 h-40"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label for="longitude" class="block font-bold my-2">Longitude</label>
+            <input
+                type="number" step="0.00000001"
+                id="longitude"
+              name="longitude"
+              required=""
+              class="w-full rounded-md input-bordered input-primary bg-base-200 px-3 py-2"
+            />
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <button type="submit" class="btn btn-primary w-full btn-sm">
+            Add Site
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

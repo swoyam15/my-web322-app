@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Page Not Found</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    
+  <%- include("partials/navbar", { page: '/'}) %> 
+  
+  <header class="navbar">
+    <h1>Oops! Page Not Found</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <section class="container mx-auto">
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center ">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">404</h1>
+
+          <p class="py-6">PAGE NOT FOUND!SORRY!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=site.site%></title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" type="image/webp" href="/imgs/ca-40x30.webp">
+</head>
+<body>
+    <%- include('partials/navbar', {page: '' }) %>
+
+        <div class="container mx-auto">
+            <div class="hero bg-base-200 rounded-lg py-6
+                <div class="hero-content text-center">
+                    <div class="max-w-md">
+                        <h1 class="text-5xl font-bold"><%= site.site %></h1>
+                        <p class="py-6">
+                            Below, you will find detailed information about the site: <%=site.site%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
+              <div>
+                <img class="w-full rounded-lg" src="<%=site.image%>">
+                <br>
+              </div>
+              <div class="prose">
+                <span class="font-bold"> Site Name: </span>
+                <%= site.site %>
+                <br>
+                <span class="font-bold"> Date: </span>
+                <%=site.date%> (<%=site.dateType%>)
+                <br>
+                <span class="font-bold"> Location: </span>
+                <%= site.location%>, <%= site.ProvinceOrTerritory.name%>
+                <br>
+                <span class="font-bold">Region: </span>
+                <%= site.ProvinceOrTerritory.region%>
+                <br>
+                <span class="font-bold">Geolocation: </span>
+                <%= site.latitude%>, <%= site.longitude%>
+                <br>
+                <span class="font-bold">Designated: </span>
+                <%= site.designated%>
+                <br>
+                <span class="font-bold">Quote:</span>
+                <span id="quote"></span>
+                <br>
+                <br>
+
+                <div class="flex justify-end">
+                    <a
+                      class="btn btn-outline btn btn-success rounded-btn"
+                      href="/editSite/<%= site.siteId %>"
+                      >Edit: <%= site.site %>
+                    </a>
+                  </div>
+                <a class="btn btn-primary btn-sm" href="#" onclick="history.back(); return false;">RETURN</a>
+                <br>
+              </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch('https://quotable.io/random')
+                .then((response) => response.json())
+                .then((data) => {
+                  document.getElementById('quote').textContent = `"${data.content}" - ${data.author}`;
+            })
+            .catch(console.error);
+            });
+        </script>
+</body>
+
+</html>
