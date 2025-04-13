@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 
-let User; // Will be set when DB connects
+let User; 
 
-// Define what a user looks like (schema)
+
 const userSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   password: String,
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
-// 1️⃣ Connects to MongoDB and sets up the User model
+
 function initialize() {
   return new Promise((resolve, reject) => {
     let db = mongoose.createConnection(process.env.MONGODB);
@@ -31,7 +31,7 @@ function initialize() {
   });
 }
 
-// 2️⃣ Registers a new user (with password hashing)
+
 function registerUser(userData) {
   return new Promise((resolve, reject) => {
     if (userData.password !== userData.password2) {
@@ -39,7 +39,6 @@ function registerUser(userData) {
       return;
     }
 
-    // Hash the password before saving
     bcrypt.hash(userData.password, 10)
       .then((hash) => {
         userData.password = hash;
@@ -67,7 +66,7 @@ function registerUser(userData) {
   });
 }
 
-// 3️⃣ Logs in user (checks password + saves login history)
+
 function checkUser(userData) {
   return new Promise((resolve, reject) => {
     User.find({ userName: userData.userName })
@@ -79,7 +78,7 @@ function checkUser(userData) {
 
         let user = users[0];
 
-        // Compare entered password with the hashed one
+
         bcrypt.compare(userData.password, user.password)
           .then((result) => {
             if (!result) {
@@ -87,7 +86,6 @@ function checkUser(userData) {
               return;
             }
 
-            // Keep only latest 8 logins
             if (user.loginHistory.length === 8) {
               user.loginHistory.pop();
             }
@@ -97,7 +95,7 @@ function checkUser(userData) {
               userAgent: userData.userAgent
             });
 
-            // Save updated login history
+
             User.updateOne(
               { userName: user.userName },
               { $set: { loginHistory: user.loginHistory } }
@@ -114,7 +112,7 @@ function checkUser(userData) {
   });
 }
 
-// ✨ Export the functions so they can be used in server.js
+
 module.exports = {
   initialize,
   registerUser,

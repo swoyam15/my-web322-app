@@ -30,7 +30,7 @@ const ProvinceOrTerritory = sequelize.define(
   {
     code: {
       type: Sequelize.STRING,
-      primaryKey: true, // use "id" as a primary key
+      primaryKey: true, 
     },
     name: Sequelize.STRING,
     type: Sequelize.STRING,
@@ -144,7 +144,7 @@ function getSitesByRegion(region) {
   });
 }
 
-//Function that adds a  Projects to the table
+
 function addSite(siteData) {
   return new Promise((resolve, reject) => {
     Site.create({
@@ -169,7 +169,7 @@ function addSite(siteData) {
   });
 }
 
-//Function that returns All provinces and territories inside the table
+
 function getAllProvincesAndTerritories() {
   return new Promise((resolve, reject) => {
     ProvinceOrTerritory.findAll()

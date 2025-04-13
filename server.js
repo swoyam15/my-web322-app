@@ -1,11 +1,23 @@
+/********************************************************************************
+*  WEB322 – Assignment 06
+*
+*  I declare that this assignment is my own work in accordance with Seneca's
+*  Academic Integrity Policy:
+*
+*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 
+Vercel Link: https://my-web322-app.vercel.app/
+*
+*  Name: Shree Krishna Joshi    Student ID: 161354238    Date: April 12, 2025
+*
+********************************************************************************/
 require("dotenv").config(); 
 const express = require("express");
 const app = express();
 const path = require("path");
 
 const siteData = require("./modules/data-service");
-const authData = require("./modules/auth-service"); // ✅ Add this line
+const authData = require("./modules/auth-service"); 
 
 const HTTP_PORT = process.env.PORT || 8080;
 
@@ -16,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const clientSessions = require("client-sessions");
 
-// ✅ Set up client sessions
+
 app.use(clientSessions({
   cookieName: "session",
   secret: "yourSecretKey",
@@ -24,13 +36,13 @@ app.use(clientSessions({
   activeDuration: 1000 * 60
 }));
 
-// ✅ Make session available in views
+
 app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
 
-// ✅ Helper middleware to protect routes
+
 function ensureLogin(req, res, next) {
   if (!req.session.user) {
     res.redirect("/login");
@@ -39,7 +51,7 @@ function ensureLogin(req, res, next) {
   }
 }
 
-// ------------------ ROUTES ------------------- //
+
 
 app.get("/", (req, res) => res.render("home"));
 
@@ -74,7 +86,6 @@ app.get("/sites/:id", async (req, res) => {
   }
 });
 
-// ✅ Protect site-changing routes
 app.get("/addSite", ensureLogin, (req, res) => {
   siteData.getAllProvincesAndTerritories()
     .then((provinces) => res.render("addSite", { provincesAndTerritories: provinces }))
@@ -127,11 +138,11 @@ app.use("/deleteSite/:id", ensureLogin, (req, res) => {
     });
 });
 
-// ✅ LOGIN / LOGOUT / REGISTER Routes
+
 
 app.get("/login", (req, res) => {
   res.render("login", {
-    userName: "", // or keep from session or query param
+    userName: "", 
     errorMessage: null
   });
 });
@@ -201,12 +212,12 @@ app.get("/userHistory", ensureLogin, (req, res) => {
   res.render("userHistory");
 });
 
-// 404 handler
+
 app.use((req, res) => {
   res.status(404).render("404", { message: "Page not found." });
 });
 
-// ✅ START SERVER: only keep this ONE server start block!
+
 siteData.initialize()
   .then(authData.initialize)
   .then(() => {
