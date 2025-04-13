@@ -237,6 +237,6 @@ module.exports = {
   addSite,
   getAllProvincesAndTerritories,
   editSite,
-  deleteSite
+  deleteSite,
 };
 

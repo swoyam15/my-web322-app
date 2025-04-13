@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mycolor: {
+              green: '#1DB954',
+              dark: '#121212',
+              light: '#282828'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<%- include("partials/navbar", { page: '/'}) %> 
+<body class="bg-black min-h-screen flex items-center justify-center">
+
+  <main class="container mx-auto p-4 max-w-md">
+    <div class="bg-mycolor-dark text-white p-8 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold mb-10 text-center">Login</h1>
+      
+      <form method="POST" action="/login" class="space-y-6">
+        <div class="space-y-2">
+          <label for="userName" class="block text-sm font-medium">Email or username</label>
+          <input 
+            type="text" 
+            id="userName" 
+            name="userName" 
+            required 
+            class="w-full px-4 py-3 bg-mycolor-light border border-gray-600 rounded focus:outline-none focus:border-mycolor-green focus:ring-1 focus:ring-mycolor-green"
+            value="<%= userName ? userName : '' %>"
+          />
+        </div>
+        
+        <div class="space-y-2">
+          <label for="password" class="block text-sm font-medium">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            class="w-full px-4 py-3 bg-mycolor-light border border-gray-600 rounded focus:outline-none focus:border-mycolor-green focus:ring-1 focus:ring-mycolor-green"
+          />
+        </div>
+        
+        <div class="flex items-center">
+          <input 
+            type="checkbox" 
+            id="rememberMe" 
+            name="rememberMe" 
+            class="h-4 w-4 rounded border-gray-600 bg-mycolor-light text-mycolor-green focus:ring-mycolor-green"
+          />
+          <label for="rememberMe" class="ml-2 text-sm">Remember me</label>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="w-full py-3 bg-mycolor-green hover:bg-green-600 text-black font-bold rounded-full transition-colors duration-200"
+        >
+          Log In
+        </button>
+      </form>
+  
+      
+      <div class="border-t border-gray-700 my-6"></div>
+      
+      <div class="text-center">
+        <p class="text-gray-400">Don't have an account? <a href="/register" class="text-white hover:underline font-bold">Sign up for website</a></p>
+      </div>
+      
+      <% if (errorMessage) { %>
+        <div class="mt-6 p-3 bg-red-900 text-white rounded text-sm flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span><%= errorMessage %></span>
+        </div>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>

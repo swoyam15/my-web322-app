@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Page Not Found</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<%- include('partials/navbar', {page: ''}) %>
+<main class="container mx-auto mt-10 p-4">
+
+    <h1 class="text-xl font-bold mb-4">Welcome, <%= session.user.userName %>!</h1>
+    <p>Email: <%= session.user.email %></p>
+  
+    <h2 class="text-lg font-semibold mt-6 mb-2">Login History</h2>
+  
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Client Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% session.user.loginHistory.forEach(item => { %>
+          <tr>
+            <td><%= item.dateTime %></td>
+            <td><%= item.userAgent %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  
+  </main>
+  

@@ -1,32 +1,65 @@
 <nav>
-  <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl " href="/">National Historic Sites <img class="w-16 h-10" src="https://imgs.search.brave.com/YpfLntBMbm3PAyPCp5-ayvFtiWkqnZNK2rFDhCVojYk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9mbGFnLWNhbmFk/YS1mcm9tLWZhY3Rv/cnkta25pdHRlZC1m/YWJyaWMtYmFja2dy/b3VuZHMtdGV4dHVy/ZXNfMTM0Mzk4LTg1/MTMuanBnP3NlbXQ9/YWlzX2h5YnJpZA" alt="CA">
-   
+        <a class="btn btn-ghost normal-case text-xl" href="/">
+          National Historic Sites
+          <img class="w-16 h-10" src="https://imgs.search.brave.com/YpfLntBMbm3PAyPCp5-ayvFtiWkqnZNK2rFDhCVojYk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9mbGFnLWNhbmFk/YS1mcm9tLWZhY3Rv/cnkta25pdHRlZC1m/YWJyaWMtYmFja2dy/b3VuZHMtdGV4dHVy/ZXNfMTM0Mzk4LTg1/MTMuanBnP3NlbXQ9/YWlzX2h5YnJpZA" alt="CA">
+        </a>
       </div>
-
+  
+      <!-- Mobile Menu -->
       <div class="dropdown">
-          <label tabindex="0" class="btn btn-ghost sm:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-          </label>
-          <ul tabindex="0"
-              class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li><a class="<%= (page == '/sites') ? 'active' : '' %>" href="/sites">View Site Collection</a></li>
-              <li><a class="<%= (page == '/addSite') ? 'active' : '' %>" href="/addSite">Add to Collection</a></li>
-              <li><a class="<%= (page == "/about") ? 'active' : '' %>" href="/about">About</a></li>    
-          </ul>
+        <label tabindex="0" class="btn btn-ghost sm:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a class="<%= (page == '/sites') ? 'active' : '' %>" href="/sites">View Site Collection</a></li>
+          <li><a class="<%= (page == '/about') ? 'active' : '' %>" href="/about">About</a></li>
+          <% if (session.user) { %>
+            <li><a class="<%= (page == '/addSite') ? 'active' : '' %>" href="/addSite">Add to Collection</a></li>
+            <li><a class="<%= (page == '/userHistory') ? 'active' : '' %>" href="/userHistory">User History</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          <% } else { %>
+            <li><a class="<%= (page == '/login') ? 'active' : '' %>" href="/login">Login</a></li>
+            <li><a class="<%= (page == '/register') ? 'active' : '' %>" href="/register">Register</a></li>
+          <% } %>
+        </ul>
       </div>
-
+  
+      <!-- Desktop Menu -->
       <div class="navbar-center hidden sm:flex">
-          <ul class="menu menu-horizontal px-1">
-              <li><a class="<%= (page == '/sites') ? 'active' : '' %>" href="/sites">View Site Collection</a></li>
-              <li><a class="<%= (page == '/addSite') ? 'active' : '' %>" href="/addSite">Add to Collection</a></li>
-              <li><a class="<%= (page == "/about") ? 'active' : '' %>" href="/about">About</a></li>    
-          </ul>
+        <ul class="menu menu-horizontal px-1">
+          <li><a class="<%= (page == '/sites') ? 'active' : '' %>" href="/sites">View Site Collection</a></li>
+          <li><a class="<%= (page == '/about') ? 'active' : '' %>" href="/about">About</a></li>
+  
+          <% if (session.user) { %>
+            <li tabindex="0">
+              <details>
+                <summary>Account: <%= session.user.userName %></summary>
+                <ul class="p-2 right-0">
+                  <li><a class="<%= (page == '/addSite') ? 'active' : '' %>" href="/addSite">Add Site</a></li>
+                  <li><a class="<%= (page == '/userHistory') ? 'active' : '' %>" href="/userHistory">User History</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+                </ul>
+              </details>
+            </li>
+          <% } else { %>
+            <li tabindex="0">
+              <details>
+                <summary>Account</summary>
+                <ul class="p-2 right-0">
+                  <li><a class="<%= (page == '/login') ? 'active' : '' %>" href="/login">Login</a></li>
+                  <li><a class="<%= (page == '/register') ? 'active' : '' %>" href="/register">Register</a></li>
+                </ul>
+              </details>
+            </li>
+          <% } %>
+        </ul>
       </div>
-  </div>
-</nav>
+    </div>
+  </nav>
+  
